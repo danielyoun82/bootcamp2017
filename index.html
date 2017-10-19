@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>
+        Learnosity Hello World - Plus!
+    </title>
+    
+    <link rel="shortcut icon" href="https://docs.learnosity.com/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://docs.learnosity.com/static/css/vendor/foundation/foundation-flex.css">
+    <link rel="stylesheet" href="https://docs.learnosity.com/static/css/vendor/foundation/foundation.min.css">
+    <link rel="stylesheet" href="https://docs.learnosity.com/static/css/app.css?bust=20170920">
+    <script src="https://docs.learnosity.com/static/js/app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <script src="https://use.typekit.net/djb7sjf.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+                        
+<link rel="stylesheet" href="https://docs.learnosity.com/js/vendor/highlight/styles/zenburn.css?bust=20170920">
+<link rel="stylesheet" href="https://docs.learnosity.com/stylesheets/css/main.css?bust=20170928">
+                                            <script>
+        // 
+        void function typekitInit(d) {
+          var kit = 'bid8pmq'
+          var key = 'typekit_url_cache'
+          var sel = 'link[href*="use.typekit.net"]'
+          function cacheUrl () {
+            if ('sessionStorage' in window)
+                var l = d.querySelector(sel);
+                l && sessionStorage.setItem(key, l.href)
+          }
+          function makeScript () {
+            var js = d.createElement('script')
+            js.src = '//use.typekit.net/' + kit + '.js'
+            js.onload = function(){ Typekit.load({active: cacheUrl}) }
+            d.head.appendChild(js)
+          }
+          function makeLink () {
+            var css = d.createElement('link')
+            css.rel = 'stylesheet'
+            css.href = sessionStorage.getItem(key)
+            css.onerror = makeScript
+            d.head.appendChild(css)
+          }
+          if ('sessionStorage' in window && sessionStorage.getItem(key)) {
+            makeLink()
+          } else {
+            makeScript()
+          }
+        }(document)
+    </script>
+            <script type="text/javascript">
+        setTimeout(function(){var a=document.createElement("script");
+        var b=document.getElementsByTagName("script")[0];
+        a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0041/2286.js?"+Math.floor(new Date().getTime()/3600000);
+        a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+    </script>
+</head>
+
+
+<body class="lrn-2-col">
+    <div class="lrn-site-wrapper">
+
+                <header>
+    <nav role="navigation">
+        <div class="nav-top">
+            <div class="nav-container container">
+                <ul class="nav-ul">
+                    <li class="logo">
+                        <a href="/"><img src="https://docs.learnosity.com/static/img/logo.svg" alt="Learnosity logo"></a>
+                    </li>
+                    <li class="dropdown show-for-large">
+                        <a href="#" tabindex="1">Author Guide<span class="lrn-i-chevron-down"></span>
+                        </a>
+                        <section class="menu-authors">
+                            <div class="container">
+                                <div class="row">
+                                    <ul class="dropdown-menu large-3 medium-6 small-12 columns">
+                                        <li class="menu-heading author-section"><a href="https://docs.learnosity.com/authors">Getting Started <span class="chevron">›</span></a></li>
+                                        <li class="sublink-author"><a href="https://docs.learnosity.com/authoring/authorguide/new">What's New</a></li>
+                                    </ul>
+                                    <ul class="dropdown-menu large-3 medium-6 small-12 columns">
+                                        <li class="menu-heading author-section"><a href="https://docs.learnosity.com/authoring/authorguide/tutorials">Tutorials <span class="chevron">›</span></a></li>
+                                        <li class="sublink-author"><a href="https://docs.learnosity.com/authoring/authorguide/tutorials#essentials">Essentials</a></li>
+                                        <li class="sublink-author"><a href="https://docs.learnosity.com/authoring/authorguide/tutorials#itemtutorials">All about Items</a></li>
+                                        <li class="sublink-author"><a href="https://docs.learnosity.com/authoring/authorguide/tutorials#validationtutorials">Validation &amp; Scoring</a></li>
+                                    </ul>
+                                    <ul class="dropdown-menu large-3 medium-6 small-12 columns">
+                                        <li class="menu-heading author-section"><a href="https://docs.learnosity.com/authoring/authorguide/questions">Question Types <span class="chevron">›</span></a></li>
+                                        <li class="sublink-author"><a href="https://docs.learnosity.com/authoring/authorguide/questions#mcq">Multiple Choice</a></li>
+                                        <li class="sublink-author"><a href="https://docs.learnosity.com/authoring/authorguide/questions#cloze">Fill in the Blanks (Cloze)</a></li>
+                                        <li class="sublink-author"><a href="https://docs.learnosity.com/authoring/authorguide/questions#classify">Classify, Match &amp; Order</a></li>
+                                        <li class="sublink-author"><a href="https://docs.learnosity.com/authoring/authorguide/questions#math">Math &amp; Chemistry</a></li>
+                                        <li class="sublink-author"><a href="https://docs.learnosity.com/authoring/authorguide/questions#graph">Graphing &amp; Charts</a></li>
+                                        <li class="sublink-author"><a href="https://docs.learnosity.com/authoring/authorguide/questions#highlight">Highlight</a></li>
+                                        <li class="sublink-author"><a href="https://docs.learnosity.com/authoring/authorguide/questions#open">Written &amp; Spoken</a></li>
+                                    </ul>
+                                    <ul class="dropdown-menu large-3 medium-6 small-12 columns">
+                                        <li class="menu-heading author-section"><a href="https://docs.learnosity.com/authoring/authorguide/formula">Formula &amp; Math Engine <span class="chevron">›</span></a></li>
+                                        <li class="sublink-author"><a href="https://docs.learnosity.com/authoring/authorguide/formula#math_scoring">Math Scoring</a></li>
+                                        <li class="sublink-author"><a href="https://docs.learnosity.com/authoring/authorguide/formula#chem_scoring">Chemistry Scoring</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+                    </li>
+                    <li class="dropdown show-for-large">
+                        <a href="#" tabindex="2">Developer Docs<span class="lrn-i-chevron-down"></span>
+                        </a>
+                        <section class="menu-developers">
+                            <div class="container">
+                                <div class="row">
+                                    <ul class="dropdown-menu large-3 medium-6 small-12 columns">
+                                        <li class="menu-heading developer-section"><a href="https://docs.learnosity.com/developers">Getting Started <span class="chevron">›</span></a></li>
+                                        <li class="sublink-developers"><a href="https://docs.learnosity.com/developers/developerguide/apioverview">API Overview</a></li>
+                                        <li class="sublink-developers"><a href="https://docs.learnosity.com/developers/developerguide/integration">Learnosity Integration</a></li>
+                                        <li class="sublink-developers"><a href="https://docs.learnosity.com/developers/developerguide/tutorials">Tutorials &amp; Case Studies</a></li>
+                                    </ul>
+                                    <ul class="dropdown-menu large-3 medium-6 small-12 columns">
+                                        <li class="menu-heading developer-section"><a href="https://docs.learnosity.com/authoring">Authoring Docs <span class="chevron">›</span></a></li>
+                                        <li class="sublink-developers"><a href="https://docs.learnosity.com/authoring/author">Author API</a></li>
+                                        <li class="sublink-developers"><a href="https://docs.learnosity.com/authoring/qti">QTI Conversion</a></li>
+                                        <li class="sublink-developers"><a href="https://docs.learnosity.com/authoring#lowerlevelapis">Other authoring APIs </a></li>
+                                     </ul>
+                                     <ul class="dropdown-menu large-3 medium-6 small-12 columns">
+                                        <li class="menu-heading developer-section"><a href="https://docs.learnosity.com/assessment">Assessment Docs <span class="chevron">›</span></a></li>
+                                        <li class="sublink-developers"><a href="https://docs.learnosity.com/assessment/items">Items API</a></li>
+                                        <li class="sublink-developers"><a href="https://docs.learnosity.com/assessment/lti">Learnosity LTI </a></li>
+                                        <li class="sublink-developers"><a href="https://docs.learnosity.com/assessment#lowerlevelapis">Other assessment APIs </a></li>
+                                     </ul>
+
+                                    <ul class="dropdown-menu large-3 medium-6 small-12 columns">
+                                        <li class="menu-heading developer-section"><a href="https://docs.learnosity.com/analytics">Analytics Docs <span class="chevron">›</span></a></li>
+                                        <li class="sublink-developers"><a href="https://docs.learnosity.com/analytics/reports">Reports API</a></li>
+                                        <li class="sublink-developers"><a href="https://docs.learnosity.com/analytics/data">Data API</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+                    </li>
+                    <li class="dropdown show-for-large">
+                        <a href="#" tabindex="3">Resources<span class="lrn-i-chevron-down"></span>
+                        </a>
+                        <section class="menu-resources">
+                            <div class="container">
+                                <div class="row">
+                                    <ul class="dropdown-menu large-3 medium-12 small-12 columns show-for-large-up">
+                                    </ul>
+                                    <ul class="dropdown-menu large-offset-3 large-3 medium-6 small-12 columns">
+                                        <li class="menu-heading resources-section"><a href="https://docs.learnosity.com/faqs">FAQs <span class="chevron">›</span></a></li>
+                                        <li class="sublink-resources"><a href="https://docs.learnosity.com/faqs/system">System Requirements</a></li>
+                                        <li class="sublink-resources"><a href="https://docs.learnosity.com/faqs/questions">APIs &amp; General</a></li>
+                                        <li class="sublink-resources"><a href="https://docs.learnosity.com/faqs/audio">Audio Questions</a></li>
+                                        <li class="sublink-resources"><a href="https://docs.learnosity.com/faqs/deprecated">Deprecated Products</a></li>
+                                    </ul>
+                                    <ul class="dropdown-menu large-3 medium-6 small-12 columns">
+                                        <li class="menu-heading resources-section"><a href="//demos.learnosity.com">Learnosity Demos <span class="chevron">›</span></a></li>
+                                        <li class="sublink-resources"><a href="//demos.learnosity.com/authoring/author/">Authoring</a></li>
+                                        <li class="sublink-resources"><a href="//demos.learnosity.com/assessment/items/">Assessment</a></li>
+                                        <li class="sublink-resources"><a href="//demos.learnosity.com/analytics/reports/">Analytics</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+                    </li>
+                </ul>
+            </div>
+
+                <!-- SEARCH -->
+                <div class="search-container container">
+                    <li class="lrn-nav-search show-for-large">
+                        <form role="search" action="/search" method="GET" accept-charset="utf-8">
+                            <input id="search" type="text" placeholder="Search..." name="q">
+                            <button type="submit" class="lrn-btn-toggle-search"><span class="lrn-i-search"></span></button>
+                        </form>
+                    </li>
+                    <li class="lrn-docs-responsive-nav show-for-small-up hide-for-large">
+                        <a href="#" class="lrn-docs-responsive-nav-menu">
+                            <span class="lrn-menu-burger-slice"></span>
+                            <span class="lrn-menu-burger-slice"></span>
+                            <span class="lrn-menu-burger-slice"></span>
+                        </a>
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </nav>
+
+<!-- Responsive nav -->
+
+    <section class="lrn-docs-responsive-section show-for-small-up hide-for-large">
+        <div class="lrn-docs-responsive-section-container">
+            <!-- SEARCH -->
+            <div class="search-container container">
+                <li class="lrn-nav-search">
+                    <form role="search" action="/search" method="GET" accept-charset="utf-8">
+                        <input id="search" type="text" placeholder="Search..." name="q">
+                        <button type="submit" class="lrn-btn-toggle-search"><span class="lrn-i-search"></span></button>
+                    </form>
+                </li>
+            </div>
+
+            <li class="dropdown">
+                <a href="#" tabindex="1">
+                    Author Guide
+                </a>
+                <section class="menu-authors">
+                    <div class="container">
+                        <div class="row">
+                            <ul class="dropdown-menu large-3 medium-12 small-12 columns">
+                                <li class="menu-heading author-section"><a href="https://docs.learnosity.com/authors">Getting Started <span class="chevron">›</span></a></li>
+                            </ul>
+                            <ul class="dropdown-menu large-3 medium-12 small-12 columns">
+                                <li class="menu-heading author-section"><a href="https://docs.learnosity.com/authors/tutorials">Tutorials <span class="chevron">›</span></a></li>
+                            </ul>
+                            <ul class="dropdown-menu large-3 medium-12 small-12 columns">
+                                <li class="menu-heading author-section"><a href="https://docs.learnosity.com/authors/question-types">Question Types <span class="chevron">›</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </li>
+            <li class="dropdown">
+                <a href="#" tabindex="2">
+                    Developer Docs
+                </a>
+                <section class="menu-developers">
+                    <div class="container">
+                        <div class="row">
+                            <ul class="dropdown-menu large-3 medium-12 small-12 columns">
+                                <li class="menu-heading developer-section"><a href="https://docs.learnosity.com/developers">Getting Started <span class="chevron">›</span></a></li>
+                            </ul>
+                            <ul class="dropdown-menu large-3 medium-12 small-12 columns">
+                                <li class="menu-heading developer-section"><a href="https://docs.learnosity.com/authoring">Authoring Docs <span class="chevron">›</span></a></li>
+                            </ul>
+                            <ul class="dropdown-menu large-3 medium-12 small-12 columns">
+                                <li class="menu-heading developer-section"><a href="https://docs.learnosity.com/assessment">Assessment Docs <span class="chevron">›</span></a></li>
+                            </ul>
+                            <ul class="dropdown-menu large-3 medium-12 small-12 columns">
+                                <li class="menu-heading developer-section"><a href="https://docs.learnosity.com/analytics">Analytics Docs <span class="chevron">›</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </li>
+            <li class="dropdown">
+                <a href="#" tabindex="3">
+                    Resources
+                </a>
+                <section class="menu-resources">
+                    <div class="container">
+                        <div class="row">
+                            <ul class="dropdown-menu large-3 medium-12 small-12 columns">
+                            </ul>
+                            <ul class="dropdown-menu large-offset-3 large-3 medium-12 small-12 columns">
+                                <li class="menu-heading resources-section"><a href="https://docs.learnosity.com/faqs">FAQs <span class="chevron">›</span></a></li>
+                            </ul>
+                            <ul class="dropdown-menu large-3 medium-12 small-12 columns">
+                                <li class="menu-heading resources-section"><a href="//demos.learnosity.com">Learnosity Demos <span class="chevron">›</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </li>
+        </div>
+    </section>
+</header>
+        
+        <!-- Container for aside and main content -->
+        <div class="lrn-docs-main-content-container">
+            <!-- only used for 2-col and 3-col layout-->
+                        <aside class="lrn-aside">
+                <div class="lrn-aside-inner">
+                    <div class="lrn-aside-inner-wrapper">
+                        <nav role="navigation" class="lrn-nav lrn-docs-nav lrn-docs-nav-aside">
+                            <ul>
+
+                                                                    
+                <li class="parent-item">
+            <a href="https://docs.learnosity.com/authors">Getting Started for Authors</a>
+        </li>
+    
+                
+            
+                                                    
+                                                                    
+                
+                <li class="active lrn-aside-active ">
+                                                            <a href="https://docs.learnosity.com/authoring/authorguide/tutorials">
+                                                    Tutorials
+                </a>
+                                                                                <ul class="nav">
+                                        
+            
+                                                    
+                                                                    
+                
+                <li class="active lrn-aside-active ">
+                                    <a href="https://docs.learnosity.com/authoring/authorguide/tutorials#gettingstarted">
+                                Getting Started
+                </a>
+                                                                                <ul class="nav">
+                                        
+            
+                                                    
+                                
+                
+                <li >
+                                                            <a href="https://docs.learnosity.com/authoring/authorguide/tutorials/gettingstarted/itemsandquestions">
+                                                    Items and Questions
+                </a>
+                            </li>
+        
+                                                    
+                                                                    
+                
+                <li class="active lrn-aside-active ">
+                                                            <a href="https://docs.learnosity.com/authoring/authorguide/tutorials/gettingstarted/createitem">
+                                                    Create an Item with an MCQ
+                </a>
+                                                                                                                                </li>
+        
+                                                    
+                                
+                
+                <li >
+                                                            <a href="https://docs.learnosity.com/authoring/authorguide/tutorials/gettingstarted/itemlayout">
+                                                    Item Layouts
+                </a>
+                            </li>
+        
+                                                    
+                                
+                
+                <li >
+                                                            <a href="https://docs.learnosity.com/authoring/authorguide/tutorials/gettingstarted/validatequestion">
+                                                    Validate a Question
+                </a>
+                            </li>
+        
+                                                    
+                                
+                
+                <li >
+                                                            <a href="https://docs.learnosity.com/authoring/authorguide/tutorials/gettingstarted/images">
+                                                    Uploading images
+                </a>
+                            </li>
+        
+                        </ul>
+
+                                                </li>
+        
+                                                    
+                                
+                
+                <li >
+                                    <a href="https://docs.learnosity.com/authoring/authorguide/tutorials#itemtutorials">
+                                Item Tutorials
+                </a>
+                            </li>
+        
+                                                    
+                                
+                
+                <li >
+                                    <a href="https://docs.learnosity.com/authoring/authorguide/tutorials#validationtutorials">
+                                Validation Tutorials
+                </a>
+                            </li>
+        
+                                                    
+                                
+                
+                <li >
+                                    <a href="https://docs.learnosity.com/authoring/authorguide/tutorials#activities">
+                                Activities
+                </a>
+                            </li>
+        
+                                                    
+                                
+                
+                <li >
+                                    <a href="https://docs.learnosity.com/authoring/authorguide/tutorials#othertutorials">
+                                Other Tutorials
+                </a>
+                            </li>
+        
+                        </ul>
+
+                                                </li>
+        
+                                                    
+                                
+                
+                <li >
+                                                            <a href="https://docs.learnosity.com/authoring/authorguide/questions">
+                                                    Question Types
+                </a>
+                            </li>
+        
+                                                    
+                                
+                
+                <li >
+                                                            <a href="https://docs.learnosity.com/authoring/authorguide/features">
+                                                    Feature Types
+                </a>
+                            </li>
+        
+                                                    
+                                
+                
+                <li >
+                                                            <a href="https://docs.learnosity.com/authoring/authorguide/formula">
+                                                    Formula &amp; Math Engine
+                </a>
+                            </li>
+        
+                                                    
+                                
+                
+                <li >
+                                                            <a href="https://docs.learnosity.com/authoring/authorguide/new">
+                                                    What&#039;s New
+                </a>
+                            </li>
+        
+                                                    
+                                
+                
+                <li >
+                                                            <a href="https://docs.learnosity.com/authoring/authorguide/releaselog">
+                                                    Author Site Release Log
+                </a>
+                            </li>
+        
+                                                    
+                                
+                
+                <li >
+                                    <a href="https://docs.learnosity.com/authoring/authorguide_v2">
+                                Legacy Author Guide
+                </a>
+                            </li>
+        
+
+
+                        </ul>
+                        <button class="lrn-btn-toggle-nav-aside" type="button"><span class="lrn-i-chevron-down"></span><span class="lrn-sr-only">Toggle menu</span></button>
+                    </nav>
+                </div>
+            </div>
+        </aside>
+        
+        <div class="lrn-main-wrapper">
+                        
+                <main class="lrn-main" role="main">
+                            <article >
+        
+                             
+                            
+        
+    <nav role="navigation" class="lrn-breadcrumb lrn-docs-breadcrumb hide-for-small">
+        <ul>
+                                                                            <li><a href="/">Home</a></li>
+                                                        <li><a href="https://docs.learnosity.com/authors">Author Guide</a></li>
+                                                
+            
+                            <li>Create an Item</li>
+                    </ul>
+    </nav>
+
+
+                    
+
+    <section class="lrn-doc-section
+                        ">
+
+        <div class="lrn-doc-section-details" id="createitem">
+                            <h1 class="lrn-docs-h1">Create an Item</h1>
+                        <div class="lrn-row">
+                                    <div class="lrn-col-xs-12 lrn-col-sm-12 lrn-col-md-12 lrn-col-lg-10">
+                        <div class="lrn-text-large">
+                            <p>Learn how to create Items and Questions using the Learnosity Author Site.</p>
+                        </div>
+
+                        
+
+                                            </div>
+                            </div>
+        </div>
+    </section>
+
+    
+
+    <section class="lrn-doc-section
+                        ">
+
+        <div class="lrn-doc-section-details" id="intro">
+                            <h2 class="lrn-docs-h2">Introduction</h2>
+                        <div class="lrn-row">
+                                    <div class="lrn-col-xs-12 lrn-col-sm-12 lrn-col-md-12 lrn-col-lg-10">
+                        <div class="lrn-text-large">
+                            
+                        </div>
+
+                        
+                <p>
+                In the <a href="https://docs.learnosity.com/assessment/authorguide/tutorials/gettingstarted/itemsandquestions"><strong>last tutorial</strong></a>, we learned about the basics of Learnosity Items and Questions. In this tutorial, we will learn how to create new Items and Questions using an example of a simple MCQ question.
+                </p>
+
+                                            </div>
+                            </div>
+        </div>
+    </section>
+
+    
+
+    <section class="lrn-doc-section
+                        ">
+
+        <div class="lrn-doc-section-details" id="subsection1">
+                            <h2 class="lrn-docs-h2">Creating a New Item</h2>
+                        <div class="lrn-row">
+                                    <div class="lrn-col-xs-12 lrn-col-sm-12 lrn-col-md-12 lrn-col-lg-10">
+                        <div class="lrn-text-large">
+                            
+                        </div>
+
+                        <p>Authoring a basic Item requires nothing more than a couple of clicks in the Learnosity Author Site. To begin creating a new Item, click on the 
+                <strong>+ Item</strong> button in the upper right corner of the Item List page.</p>
+                <img alt="New Item" src="//assets.learnosity.com/organisations/6/15a0ecf3-b7e1-40cb-bcd8-53e7c98472a4.png" />
+                <p><small>Figure 1 - Add a new item.</small> </p>
+                <br>
+                <p> New Items will take on a default reference based on your organisation, and can be renamed. The Item is a blank container where you add Questions and Features. By default, the item will open on the <strong>Edit</strong> view. You can also preview the Item to see it from a student view.</p>
+
+                                            </div>
+                            </div>
+        </div>
+    </section>
+
+    
+
+    <section class="lrn-doc-section
+                        ">
+
+        <div class="lrn-doc-section-details" id="subsection2">
+                            <h2 class="lrn-docs-h2">Adding a Question to the Item</h2>
+                        <div class="lrn-row">
+                                    <div class="lrn-col-xs-12 lrn-col-sm-12 lrn-col-md-12 lrn-col-lg-10">
+                        <div class="lrn-text-large">
+                            
+                        </div>
+
+                        <p>To add a question to the Item, click on the <strong>+</strong> in the center of the item.</p>
+                <img alt="Empty-item-edit" src="//assets.learnosity.com/organisations/1/8666b294-c1b4-4887-90fa-74c23272017e.png" />
+
+                <p><small>Figure 2 - Add a question to an item.</small></p>
+                <br>
+
+                <p>The Learnosity Question Editor will open, and our default set of Question templates will be visible. They have been organised into a number of categories. On the left side, you will see the list of these categories, and a group of templates will be available under each category. Each template has been given a name and a short description underneath. </p><br>  
+                <img alt="Question Editor view in the Item" src="https://assets.learnosity.com/organisations/6/0ba5a229-abe0-46ca-bdc0-1f7d36b9af75.png" />
+                <p><small>Figure 3 - Set of Learnosity default Question templates. </small></p>
+                
+
+                                            </div>
+                            </div>
+        </div>
+    </section>
+
+    
+
+    <section class="lrn-doc-section
+                        ">
+
+        <div class="lrn-doc-section-details" id="subsection2">
+                            <h2 class="lrn-docs-h2">Create a Multiple Choice Question</h2>
+                        <div class="lrn-row">
+                                    <div class="lrn-col-xs-12 lrn-col-sm-12 lrn-col-md-12 lrn-col-lg-10">
+                        <div class="lrn-text-large">
+                            
+                        </div>
+
+                        
+                <p>Once you select the template (in this case MCQ Block UI), you will see the Question Editor 
+                used to create the Question on the left side of the screen. On the right side, we can see a preview of the question.</p>
+                <p>The initial entry point for question creation is typically the basic parameters shown in <em>Figure 4</em>. 
+                Here, you can enter the question stimulus, or stem, and a variable number of answer options. You can also specify single- or multiple-response behavior.</p>
+                <img src="//assets.learnosity.com/organisations/1/a65772c1-cefb-4091-8547-b87803065f28.png" width="500" height= "412" class="lrn-image-non-responsive">
+                <p><small>Figure 4 - Basic parameters of the Question Editor with stimulus and a list of possible answers.</small></p>
+                
+
+                 <h4>Validation</h4>
+                <p>Validation criteria can be found below basic parameters, as shown in <em>Figure 6</em>. Here, you can select the correct answer, set scoring points, and add optional alternative correct answers. Under <strong>More Options</strong> accordion you will also find Question-type-specific scoring types and an option to add instant feedback.</p>
+                <img src="//assets.learnosity.com/organisations/130/Screen Shot 2016-02-19 at 14.24.11.png">
+                <p><small>Figure 5 - MCQ validation.</small></p><br>
+                
+
+                <h4>Layout</h4>
+                <p>You can change the look of the question in the Layout section, found under the <strong>More Options</strong> accordion. Here, you can change things like font size, 
+                number of columns, horizontal and vertical orientation, and the label type (such as uppercase or lowercase letters, or numbers, which appear beside presponse options).</p>
+                <p>As you create the Question, every change you make is rendered in the Preview section on the right side of the screen. 
+                Here, you can see how your Question will look to a student.</p>
+                
+                <img src="//assets.learnosity.com/organisations/6/2f3323e2-607c-47fc-8bd9-332903996e33.png" width="502"> 
+                <p><small>Figure 6 - MCQ layout options.</small></p>
+
+
+                <h4>Metadata</h4>
+                <p>The Metadata options such as Distractor Rationale, Sample Answer, Rubric Reference etc. provide a mechanism for entry of any custom data a client wants to add to the question. These fields can be populated when editing a question, in the <strong>Details</strong> section under More Options.
+                Examples include sample answers, hints, and distractor rationales (feedback). Learnosity can even add new custom fields to a 
+                client’s organization settings allowing for extensive customization. Clients can then use this custom content by providing display 
+                logic and formatting that is best suited to their specific delivery.</p>
+                <p>Note that you will not be able to view a preview of changes you make in the Details section. Your developers will decide how to display this. 
+                For more information about using metadata in Learnosity visit our <a href="https://docs.learnosity.com/assessment/authorguide/tutorials/othertutorials/metadata"><strong>Metadata tutorial</strong></a>.</p>
+                <h4>More Options</h4>
+                <p>Under the <strong>More Options</strong> accordion, you will find additional advanced options. You can add LaTeX or MathML to content, shuffle distractors, and even edit an alternate view of the question’s stimulus in review mode.</p>
+                
+
+                                            </div>
+                            </div>
+        </div>
+    </section>
+
+    
+
+    <section class="lrn-doc-section
+                        ">
+
+        <div class="lrn-doc-section-details" id="subsection3">
+                            <h2 class="lrn-docs-h2">Question Preview</h2>
+                        <div class="lrn-row">
+                                    <div class="lrn-col-xs-12 lrn-col-sm-12 lrn-col-md-12 lrn-col-lg-10">
+                        <div class="lrn-text-large">
+                            
+                        </div>
+
+                        <p>A preview of the question is always available throughout editing. As shown in <em>Figure 7</em>, you can test your progress by selecting 
+                an answer and checking the validated result.</p>
+                <p>The score will be updated based on the test input. </p>
+                <!--When a question is too big to fit in the preview area, the Zoom button can be used to show the question in a full-window modal dialog.-->
+                <img src="https://assets.learnosity.com/organisations/130/d6c32c69-04f2-4548-bf8b-31ea6e9e8566.png" width="558" height="398" class="lrn-image-non-responsive">
+                <p><small>Figure 7 - Question preview.</small></p>
+                <br>
+
+                                            </div>
+                            </div>
+        </div>
+    </section>
+
+    
+
+    <section class="lrn-doc-section
+                        ">
+
+        <div class="lrn-doc-section-details" id="subsection4">
+                            <h2 class="lrn-docs-h2">Saving the Item</h2>
+                        <div class="lrn-row">
+                                    <div class="lrn-col-xs-12 lrn-col-sm-12 lrn-col-md-12 lrn-col-lg-10">
+                        <div class="lrn-text-large">
+                            
+                        </div>
+
+                        <p>When you are happy with your question, click on the <strong>Save</strong> button above on the top right of the question and you will 
+                be redirected back to the Item. <em>Figure 8</em> shows a view from the edit screen of an Item with just one question on it.  To add more questions to the Item, simply click the <strong>+</strong> below the Item.</p>
+                <img alt="mcq question" src="https://assets.learnosity.com/organisations/6/25a7536f-3834-4dc9-b872-2ae5b52ce2f7.png" width="558" height="398" class="lrn-image-non-responsive">
+                <p><small>Figure 8 - Item Edit screen with an MCQ question.</small></p>                
+
+                                            </div>
+                            </div>
+        </div>
+    </section>
+
+    
+
+    <section class="lrn-doc-section
+                        ">
+
+        <div class="lrn-doc-section-details" id="subsection5">
+                            <h2 class="lrn-docs-h2">Summary</h2>
+                        <div class="lrn-row">
+                                    <div class="lrn-col-xs-12 lrn-col-sm-12 lrn-col-md-12 lrn-col-lg-10">
+                        <div class="lrn-text-large">
+                            
+                        </div>
+
+                        <p>In this tutorial, we covered how to create an Item and add questions to Items. We also learned the basics of question authoring. 
+                In the <a href="https://docs.learnosity.com/assessment/authorguide/tutorials/gettingstarted/itemlayout"><strong>next tutorial</strong></a> we will learn how to create different Item layouts.</p>
+                
+
+                                            </div>
+                            </div>
+        </div>
+    </section>
+
+    
+        
+            </article>
+                </main>
+            </div>
+        </div>
+
+        <div id="infobox-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-large">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;  </button>
+                    <h4 class="modal-title">Untitled</h4>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="lrn-btn lrn-docs-btn lrn-docs-btn-next-secondary btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+
+<!-- footer used for 1-col and 2-col layout -->
+    <footer class="lrn-footer lrn-footer-full" role="contentinfo">
+        <div class="lrn-footer-sub-content">
+            <div class="lrn-container">
+                <div class="lrn-row">
+                    <div class="lrn-col-xs-12 lrn-col-md-12">
+                        <div class="lrn-footer-note lrn-text-small lrn-footer-col-right">
+                            <p><a href="https://www.learnosity.com/privacypolicy/">Privacy Policy</a> | Copyright &copy; Learnosity Ltd. 2006-2017</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    
+        
+        
+                                    <script src="/js/vendor/jquery-2.1.1.min.js"></script>
+                            <script src="/js/vendor/bootstrap/bootstrap.js"></script>
+                            <script src="/js/vendor/highlight/highlight.pack.js"></script>
+                            <script src="/js/main.js?bust=20171005"></script>
+                            <script src="/js/internal/zopim/initZopim.js"></script>
+                        
+
+
+    <script>
+        hljs.initHighlightingOnLoad();
+
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-249610-20', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+<div class="modal fade" id="supportedClozeTemplateTags" tabindex="-1" role="dialog" aria-labelledby="supportedClozeTemplateTags" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">x</button>
+                <h4>Supported HTML entities</h4>
+            </div>
+            <div class="modal-body">
+                &lt;em&gt;, &lt;strong&gt;, &lt;u&gt;, &lt;p&gt;, &lt;br&gt;, &lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;, &lt;dl&gt;, &lt;dt&gt;, &lt;dd&gt;, &lt;img&gt;, &lt;table&gt;, &lt;thead&gt;, &lt;tbody&gt;, &lt;tfoot&gt;, &lt;tr&gt;, &lt;th&gt;, &lt;td&gt;, &lt;sub&gt;, &lt;sup&gt;, &lt;small&gt;
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="supportedTags" tabindex="-1" role="dialog" aria-labelledby="modalSupportedTags" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">x</button>
+                <h4 id="modalSupportedTags">Supported HTML entities</h4>
+            </div>
+            <div class="modal-body">
+                &lt;a&gt;, &lt;abbr&gt;, &lt;address&gt;, &lt;article&gt;, &lt;area&gt;, &lt;aside&gt;, &lt;blockquote&gt;, &lt;br&gt;, &lt;caption&gt;, &lt;cite&gt;, &lt;code&gt;, &lt;col&gt;, &lt;colgroup&gt;, &lt;dd&gt;, &lt;div&gt;, &lt;dl&gt;, &lt;dt&gt;, &lt;em&gt;, &lt;figure&gt;, &lt;figcaption&gt;, &lt;footer&gt;, &lt;h1&gt;, &lt;h2&gt;, &lt;h3&gt;, &lt;h4&gt;, &lt;h5&gt;, &lt;h6&gt;, &lt;hgroup&gt;, &lt;header&gt;, &lt;hr&gt;, &lt;img&gt;, &lt;li&gt;, &lt;main&gt;, &lt;map&gt;, &lt;nav&gt;, &lt;ol&gt;, &lt;p&gt;, &lt;pre&gt;, &lt;q&gt;, &lt;section&gt;, &lt;small&gt;, &lt;strong&gt;, &lt;sub&gt;, &lt;sup&gt;, &lt;table&gt;, &lt;tbody&gt;, &lt;td&gt;, &lt;tfoot&gt;, &lt;th&gt;, &lt;thead&gt;, &lt;time&gt;, &lt;tr&gt;, &lt;u&gt;, &lt;ul&gt;
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="metadata" tabindex="-1" role="dialog" aria-labelledby="modalMetadata" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">x</button>
+                <h4 id="modalMetadata">Supported Metadata Attributes</h4>
+            </div>
+            <div class="modal-body">
+                <ul>
+        <!--    Commented out in case we need for future reference - Luke:
+                    <li>
+                        <em>widget_reference</em>: Unique identifier for the widget
+                    </li>
+                    <li>
+                        <em>sheet_reference</em>: Unique identifier for the sheet on which the widget appears
+                    </li> -->
+                    <li>
+                        <em>rubric_reference</em>: Unique identifier for the rubric to be used with the Questions API - defaults to course rubric if assigned in activity
+                    </li>
+                    <li>
+                        <em>sample_answer</em>: A sample answer to be displayed on the Learnosity dashboard. HTML is supported
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="charMapDefault" tabindex="-1" role="dialog" aria-labelledby="modalCharMap" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">x</button>
+                <h4 id="modalCharMap">Default Character Sets</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row-fluid">
+                <div class="col-md-6">
+                    <table class=" sub_table table">
+                        <thead>
+                            <tr>
+                                <th colspan="6">Default Characters</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>¡</td><td>À</td><td>È</td><td>Ì</td><td>Ò</td><td>Ù</td>
+                            </tr>
+                            <tr>
+                                <td>¿</td><td>Á</td><td>É</td><td>Í</td><td>Ó</td><td>Ú</td>
+                            </tr>
+                            <tr>
+                                <td>Ç</td><td>Â</td><td>Ê</td><td>Î</td><td>Ô</td><td>Û</td>
+                            </tr>
+                            <tr>
+                                <td>Ñ</td><td>Ã</td><td>Ë</td><td>Ï</td><td>Õ</td><td>Ü</td>
+                            </tr>
+                            <tr>
+                                <td>ç</td><td>Ä</td><td>è</td><td>ì</td><td>Ö</td><td>ù</td>
+                            </tr>
+                            <tr>
+                                <td>ñ</td><td>Å</td><td>é</td><td>í</td><td>Ø</td><td>ú</td>
+                            </tr>
+                            <tr>
+                                <td>ý</td><td>Æ</td><td>ê</td><td>î</td><td>ð</td><td>û</td>
+                            </tr>
+                            <tr>
+                                <td>ÿ</td><td>à</td><td>ë</td><td>ï</td><td>ò</td><td>ü</td>
+                            </tr>
+                            <tr>
+                                <td></td><td>á</td><td></td><td></td><td>ó</td><td></td>
+                            </tr>
+                            <tr>
+                                <td></td><td>â</td><td></td><td></td><td>ô</td><td></td>
+                            </tr>
+                            <tr>
+                                <td></td><td>ã</td><td></td><td></td><td>õ</td><td></td>
+                            </tr>
+                            <tr>
+                                <td></td><td>ä</td><td></td><td></td><td>ö</td><td></td>
+                            </tr>
+                            <tr>
+                                <td></td><td>å</td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td></td><td>æ</td><td></td><td></td><td></td><td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <table class=" sub_table table">
+                        <thead>
+                            <tr>
+                                <th colspan="6">Default Math Characters</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>⁰</td><td>¹</td><td>²</td><td>³</td><td>⁴</td><td>⁵</td>
+                            </tr>
+                            <tr>
+                                <td>⁶</td><td>⁷</td><td>⁸</td><td>⁹</td><td>⁺</td><td>⁻</td>
+                            </tr>
+                            <tr>
+                                <td>₀</td><td>₁</td><td>₂</td><td>₃</td><td>₄</td><td>₅</td>
+                            </tr>
+                            <tr>
+                                <td>₆</td><td>₇</td><td>₈</td><td>₉</td><td>₊</td><td>₋</td>
+                            </tr>
+                            <tr>
+                                <td>½</td><td>⅓</td><td>⅔</td><td>¼</td><td>¾</td><td>⅕</td>
+                            </tr>
+                            <tr>
+                                <td>⅖</td><td>⅗</td><td>⅘</td><td>⅙</td><td>⅚</td><td>√</td>
+                            </tr>
+                            <tr>
+                                <td>∞</td><td>≤</td><td>≥</td><td>±</td><td>μ</td><td>σ</td>
+                            </tr>
+                            <tr>
+                                <td>∫</td><td>Δ</td><td>∪</td><td>∩</td><td>≡</td><td>°</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</body>
+</html>
