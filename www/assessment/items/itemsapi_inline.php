@@ -12,7 +12,15 @@ $security = array(
     'timestamp'    => $timestamp
 );
 
-$items = array('Demo3', 'Demo4', 'Demo5', 'Demo6', 'Demo7', 'Demo8', 'Demo9', 'Demo10');
+session_start();
+if(isset($_SESSION['itemID'])){
+  $itemList = explode(",", $_SESSION['itemID']);
+} else {
+  $_SESSION['itemID'] = "Demo3,Demo4,Demo5,Demo6,Demo7,Demo8,Demo9,Demo10";
+  $itemList = explode(",", $_SESSION['itemID']);
+}
+$items = $itemList;
+
 $sessionid = Uuid::generate();
 
 $request = array(
@@ -54,6 +62,14 @@ $signedRequest = $Init->generate();
 </div>
 
 <div class="section">
+    <div id="form">
+      <label>Item IDs :</label>
+      <input id="itemID" type="text" placeholder="Demo3,Demo4">
+      <input id="submit" type="button" value="Change List">
+      <div id="result">
+        <i>current dataset: <?php session_start(); echo $_SESSION['itemID'];?></i>
+      </div>
+    </div>
     <br>
     <p>
         <?php foreach ($items as $item) { ?>
@@ -64,6 +80,7 @@ $signedRequest = $Init->generate();
 </div>
 
 <!-- Container for the items api to load into -->
+<script src="getSessionVar.js"></script>
 <script src="<?php echo $url_items; ?>"></script>
 <script>
     var eventOptions = {
