@@ -1,4 +1,10 @@
 <?php
+// session is started by header.php
+session_start();
+if (!isset($_SESSION['itemID'])) {
+    $_SESSION['itemID'] = "Bootcamp2017Activity";
+}
+$activity_id = $_SESSION['itemID'];
 
 include_once '../../config.php';
 include_once 'includes/header.php';
@@ -11,28 +17,28 @@ $security = array(
     'domain' => $domain
 );
 
+// Get items belongs to
+require 'dataapi/data_endpoints.php';
+$activities_output = getActivitiesByActivityID($activity_id);
+//echo json_encode($activities_output);
+if (count($activities_output['data']) <= 0) {
+    echo "<font color='red'>Unable to find activity specified</font><br><br>";
+} else {
+    $items = $activities_output['data'][0]['data']['items'];
+}
+
+$sessionid = Uuid::generate();
 $request = [
-    'activity_id' => 'itemsassessdemo',
-    'name' => 'Items API demo - assess activity',
+    'activity_id' => $activity_id,
+    'name' => 'Accessment',
     'rendering_type' => 'assess',
     'state' => 'initial',
     'type' => 'submit_practice',
-    'session_id' => Uuid::generate(),
+    'session_id' => $sessionid,
     'user_id' => $studentid,
-    'items' => [
-        'Demo3',
-        'Demo4',
-        'accessibility_demo_6',
-        'Demo6',
-        'Demo7',
-        'Demo8',
-        'Demo9',
-        'Demo10',
-        'audioplayer-demo-1'
-    ],
+    'items' => $items,
     'config' => [
-        'title' => 'Demo activity - showcasing question types and assess options',
-        'subtitle' => 'Walter White',
+        'title' => $activity_id.' - Assessment',
         'regions' => [
             'top-left' => [
                 [
@@ -113,13 +119,12 @@ $request = [
                     'default_label_option' => 'regionHeaderBottomRight'
                 ]
             ]
-
         ],
         'navigation' => [
             'show_progress' => false,
             'show_intro' => true,
             'show_outro' => true,
-            'show_title' => false,
+            'show_title' => true,
             'skip_submit_confirmation' => false,
             'warning_on_change' => false,
             'show_acknowledgements' => true,
@@ -168,6 +173,7 @@ $signedRequest = $Init->generate();
 ?>
 
 <div class="jumbotron section">
+  <!--
     <div class="toolbar">
         <ul class="list-inline">
             <li data-toggle="tooltip" data-original-title="Customise API Settings"><a href="#" class="text-muted" data-toggle="modal" data-target="#settings"><span class="glyphicon glyphicon-list-alt"></span></a></li>
@@ -176,14 +182,30 @@ $signedRequest = $Init->generate();
             <li data-toggle="tooltip" data-original-title="Toggle product overview box"><a href="#"><span class="glyphicon glyphicon-chevron-up jumbotron-toggle"></span></a></li>
         </ul>
     </div>
+  -->
     <div class="overview">
-        <h1>Items API – Assess</h1>
+        <h1>Assessment</h1>
+        <!-- <h1>Items API – Assess</h1> -->
+<!--
         <p>With the flick of a switch make the items into an assessment. Truly write once - use anywhere.
         <p>
         <p>Type ctrl+shift+m to open the Administration Panel. The default password is <em>password</em>.</p>
+-->
+        <div id="form">
+            <label>Activity ID :</label>
+            <input id="itemID" type="text" size="35" placeholder="Activity ID e.g. Bootcamp2017Activity">
+            <input id="submit" type="button" value="Change">
+            <span id="result">
+                <i>&nbsp;current activity:
+                    <?php
+                    echo $_SESSION['itemID'];
+                    ?>
+                </i>
+            </span>
+      </div>
     </div>
 </div>
-
+<script src="getSessionVarItems.js"></script>
 <div class="section">
     <div id="learnosity_assess"></div>
 </div>
@@ -240,7 +262,7 @@ $signedRequest = $Init->generate();
 <script type="text/javascript" src="regions_settings.js">
 </script>
 <?php
-include_once 'views/modals/settings-items2.php';
+//include_once 'views/modals/settings-items2.php';
 include_once 'views/modals/initialisation-preview.php';
 include_once 'includes/footer.php';
 

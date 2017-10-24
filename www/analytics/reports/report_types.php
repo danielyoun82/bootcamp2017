@@ -1,9 +1,21 @@
 <?php
+error_reporting(E_ALL);
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
+
+session_start();
+if (!isset($_SESSION['itemID'])) {
+    $_SESSION['itemID'] = "Bootcamp2017Activity";
+}
+$activity_id = $_SESSION['itemID'];
 
 include_once '../../config.php';
 include_once 'includes/header.php';
 
+use LearnositySdk\Request\DataApi;
 use LearnositySdk\Request\Init;
+
+require_once 'includes/app_paths.php';
 
 $security = array(
     'consumer_key' => $consumer_key,
@@ -46,8 +58,16 @@ $activitySummaryByGroupColumns = [
     ]
 ];
 
+require 'dataapi/data_endpoints.php';
+$activities_output = getSessionResponsesByActivityID($activity_id);
+echo json_encode($activities_output);
+//print_r($activities_output);
+
 $usersMap = json_decode(file_get_contents(__DIR__ . "/aggregatereports/usersMap.json"), true);
 
+$userId = 'demo_student';
+$session_id ='aa83b417-c55c-430b-9928-974466b1d659';
+$activity_id = '5fae9250-9ee4-403e-bf12-4928ab972b74';
 $request = array(
     'configuration' => array(
         'questionsApiVersion' => 'v2'
@@ -56,16 +76,18 @@ $request = array(
         array(
             'id'          => 'report-1',
             'type'        => 'sessions-summary',
-            'user_id'     => 'mce_student',
+            'user_id'     => $userId,
             'session_ids' => array(
-                'd7ad7585-a0c1-4c01-9762-44a85f55835c'
+                //'d7ad7585-a0c1-4c01-9762-44a85f55835c'
+                $session_id
             )
         ),
         array(
             'id'         => 'report-2',
             'type'       => 'session-detail-by-item',
-            'user_id'    => 'brianmoser',
-            'session_id' => '8151DD9E-9029-4D13-AC773EC9C05E7FF2'
+            'user_id'    => $userId,
+            'session_id' => $session_id
+            //'session_id' => '8151DD9E-9029-4D13-AC773EC9C05E7FF2'
             // Better to use this session below as it corresponds to the session-detail-by-question report below.
             // 'user_id'    => 'demo_student',
             // 'session_id' => 'ac65af88-78e6-4117-920b-f11497542e45'
@@ -74,22 +96,24 @@ $request = array(
         array(
             'id'         => 'report-2b',
             'type'       => 'session-detail-by-question',
-            'user_id'    => 'demo_student',
-            'session_id' => 'ac65af88-78e6-4117-920b-f11497542e45'
+            'user_id'    => $userId,
+            'session_id' => $session_id
         ),
+        /*
         array(
             'id'        => 'report-3',
             'type'      => 'progress-by-tag',
-            'user_id'   => 'mce_student_1',
-            'hierarchy' => 'CCSS'
+            'user_id'   => $userId,
+            'hierarchy' => 'demo'
         ),
+        */
         array(
             'id'          => 'report-4',
             'type'        => 'sessions-summary-by-tag',
-            'user_id'     => 'mce_student_3',
-            'hierarchy'   => 'CCSS',
+            'user_id'     => $userId,
+            'hierarchy'   => 'demo',
             'session_ids' => array(
-                'd5cde952-1111-49ad-bfc7-c1ba102f3b22'
+                $session_id
             ),
         ),
         array(
@@ -100,32 +124,15 @@ $request = array(
             'display_time_spent' => true,
             'users'              => array(
                 array(
-                    'id' => 'mce_student',
-                    'name' => 'Jesse Pinkman'
+                    'id' => $userId,
+                    'name' => 'Demo Student'
                 ),
-                array(
-                    'id' => 'mce_student_1',
-                    'name' => 'Walter White'
-                ),
-
-                array(
-                    'id' => 'mce_student_2',
-                    'name' => 'Skylar White'
-                ),
-                 array(
-                    'id' => 'mce_student_3',
-                    'name' => 'Saul Goodman'
-                ),
-                 ),
+            ),
 
             'activities' => array(
                 array(
-                    'id' => 'Summer_Test_1',
-                    'name' => 'Summer Test'
-                ),
-                array(
-                    'id' => 'Weekly_Math_Quiz',
-                    'name' => 'Weekly Math Quiz'
+                    'id' => '5fae9250-9ee4-403e-bf12-4928ab972b74',
+                    'name' => '5fae9250-9ee4-403e-bf12-4928ab972b74'
                 )
             )
         ),
@@ -133,16 +140,12 @@ $request = array(
             'id'                 => 'report-6',
             'type'               => 'lastscore-by-activity',
             'scoring_type'       => 'partial',
-            'user_id'            => 'mce_student',
+            'user_id'            => $userId,
             'display_time_spent' => true,
             'activities'         => array(
                 array(
-                    'id' => 'Summer_Test_1',
-                    'name' => 'Summer Test'
-                ),
-                array(
-                    'id' => 'Weekly_Math_Quiz',
-                    'name' => 'Weekly Math Quiz'
+                    'id' => '5fae9250-9ee4-403e-bf12-4928ab972b74',
+                    'name' => '5fae9250-9ee4-403e-bf12-4928ab972b74'
                 )
             )
         ),
@@ -154,20 +157,8 @@ $request = array(
             'scoring_type'         => 'partial',
             'users'                => array(
                 array(
-                    'id' => 'mce_student',
+                    'id' => $userId,
                     'name' => 'Jesse Pinkman'
-                ),
-                array(
-                    'id' => 'mce_student_2',
-                    'name' => 'Skylar White'
-                ),
-                array(
-                    'id' => 'mce_student_1',
-                    'name' => 'Walter White'
-                ),
-                array(
-                    'id' => 'mce_student_3',
-                    'name' => 'Saul Goodman'
                 )
             ),
             'activity_id' => 'Weekly_Math_Quiz'
@@ -178,20 +169,8 @@ $request = array(
             'display_time_spent' => true,
             'users'              => array(
                 array(
-                    'id' => 'mce_student',
+                    'id' => $userId,
                     'name' => 'Jesse Pinkman'
-                ),
-                 array(
-                    'id' => 'mce_student_1',
-                    'name' => 'Walter White'
-                ),
-                   array(
-                    'id' => 'mce_student_2',
-                    'name' => 'Skylar White'
-                ),
-                    array(
-                    'id' => 'mce_student_3',
-                    'name' => 'Saul Goodman'
                 )
             ),
             'activity_id' => 'Weekly_Math_Quiz',
@@ -255,6 +234,7 @@ $request = array(
             'user_id'     => 'brianmoser',
             'activity_id' => 'edde56e8-ff65-e42e-b4fe49caad796bd'
         ),
+        /*
         array( //NEW
             'id'          => 'report-16',
             'type'        => 'progress-single',
@@ -330,6 +310,7 @@ $request = array(
                 )
             )
         ),
+        */
         array(
             'id'           => 'report-22',
             'type'         => 'sessions-list-by-item',
@@ -350,7 +331,8 @@ $request = array(
             'session_ids' => array(
                 'd7ad7585-a0c1-4c01-9762-44a85f55835c'
             )
-        ),
+        )
+        /*
         array(
             'id'          => 'activity-summary-by-group-report',
             'type'        => 'activity-summary-by-group',
@@ -358,6 +340,7 @@ $request = array(
             "group_path" => [],
             "columns" => $activitySummaryByGroupColumns,
         )
+        */
     )
 );
 
@@ -367,6 +350,7 @@ $signedRequest = $Init->generate();
 ?>
 
 <div class="jumbotron section">
+  <!--
     <div class="toolbar">
         <ul class="list-inline">
             <li data-toggle="tooltip" data-original-title="Preview API Initialisation Object"><a href="#"  data-toggle="modal" data-target="#initialisation-preview"><span class="glyphicon glyphicon-search"></span></a></li>
@@ -374,10 +358,23 @@ $signedRequest = $Init->generate();
             <li data-toggle="tooltip" data-original-title="Toggle product overview box"><a href="#"><span class="glyphicon glyphicon-chevron-up jumbotron-toggle"></span></a></li>
         </ul>
     </div>
+  -->
     <div class="overview">
         <h1>Reports API – Report Types</h1>
         <p>A cross domain embeddable service that allows content providers to easily render rich reports.<p>
     </div>
+    <div id="form">
+        <label>Activity ID :</label>
+        <input id="itemID" type="text" placeholder="Activity ID e.g. Bootcamp2017Activity">
+        <input id="submit" type="button" value="Change">
+        <span id="result">
+            <i>&nbsp;current activity:
+                <?php
+                echo $_SESSION['itemID'];
+                ?>
+            </i>
+        </span>
+  </div>
 </div>
 
 <div class="section">
@@ -750,7 +747,7 @@ $signedRequest = $Init->generate();
             </div>
         </div>
 
-
+<!--
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
@@ -833,7 +830,8 @@ $signedRequest = $Init->generate();
                 </div>
             </div>
         </div>
-
+-->
+<!--
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
@@ -883,9 +881,10 @@ $signedRequest = $Init->generate();
                 </div>
             </div>
         </div>
-
+      -->
 
         <!-- Real time reports -->
+        <!--
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
@@ -911,6 +910,7 @@ $signedRequest = $Init->generate();
                                     </a>
                                 </h4>
                             </div>
+
                             <div id="live-progress" class="panel-collapse collapse in">
                                 <div class="panel-body">
                                     <section>
@@ -933,6 +933,7 @@ $signedRequest = $Init->generate();
                     </div>
                 </div>
             </div>
+          -->
         </div>
 
     </div>
@@ -946,6 +947,8 @@ $signedRequest = $Init->generate();
     </div>
 </div>
 
+<?php echo getcwd(); ?>
+<script src="getSessionVarReport.js"></script>
 <script src="<?php echo $url_reports; ?>"></script>
 <script src="<?php echo $env['www'] ?>static/vendor/head.min.js"></script>
 <script src="<?php echo $env['www'] ?>static/vendor/reveal/reveal.js"></script>
@@ -983,7 +986,6 @@ $signedRequest = $Init->generate();
             });
         });
     };
-
     // Array of ColumnDefinition objects we can pass to activitySummaryByGroup.setOptions({columns: ...}), eg.
     //   [
     //     {
@@ -1001,6 +1003,7 @@ $signedRequest = $Init->generate();
     //     },
     //     ...
     //   ]
+
     var activitySummaryByGroupColumns = <?php echo json_encode($activitySummaryByGroupColumns, JSON_PRETTY_PRINT); ?>;
 
     // Map of user_id: user_name, eg.
@@ -1172,12 +1175,13 @@ $signedRequest = $Init->generate();
         });
 
         // Aggregate report events
+        /*
         var activitySummaryByGroup = lrnReports.getReport('activity-summary-by-group-report');
         activitySummaryByGroup.on('change:data', function (eventData) {
             enhanceGroupReportUI(activitySummaryByGroup, eventData.dataset_group);
         });
         enhanceGroupReportUI(activitySummaryByGroup);
-
+        */
         // Sessions detail hidden width fix
         $('a#report-session-detail').click(function (e) {
             e.preventDefault();
