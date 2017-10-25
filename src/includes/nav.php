@@ -1,6 +1,6 @@
 <?php
     $pages = array(
-      /*
+
         'Authoring' => array(
             'authoring/author/index.php'         => 'Author API',
             'authoring/questioneditor/v3/index.php' => 'Question Editor API V3',
@@ -24,7 +24,7 @@
             'casestudies/customquestions/index.php' => 'Custom Questions',
             'casestudies/spanish/index.php' => 'Spanish Demo'
         )
-        */
+
     );
 ?>
 
@@ -61,7 +61,7 @@
             <div class="nav-sec-wrapper">
                 <ul class="nav navbar-nav nav-sec">
                     <li>
-                        <a href="https://github.com/Learnosity/learnosity-demos/blob/master/www<?php echo $_SERVER['REQUEST_URI']?>" class="text-muted">
+                        <a href="https://github.com/Learnosity/learnosity-demos/blob/master/www<?php //echo $_SERVER['REQUEST_URI']?>" class="text-muted">
                             <span class="glyphicon glyphicon-file"></span> <span class="nav-source-text">View source</span>
                         </a>
                     </li>

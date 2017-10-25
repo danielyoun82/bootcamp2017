@@ -21,16 +21,29 @@ include_once 'includes/header.php';
 
 <body class="lrn-2-col">
     <div class="lrn-site-wrapper">
-      <h2>Learnosity product at a glance</h2>
+      <section class="lrn-doc-section">
+          <div class="lrn-doc-section-details" id="quickstart">
+            <h2>Learnosity QuickStart Guide</h2>
+              <div class="lrn-row">
+                  <div class="lrn-col-xs-12 lrn-col-sm-12 lrn-col-md-12 lrn-col-lg-10">
+                      <div class="lrn-text-large"></div>
+                      <p> In this tutorial, we'll look at the workflow of Learnosity product at a simplest form and learn about it through interactive demostration.
+
+                      </p>
+                  </div>
+              </div>
+          </div>
+      </section>
         <section class="lrn-doc-section">
             <div class="lrn-doc-section-details" id="createItem">
                 <h3 class="lrn-docs-h2">Create items</h3>
                 <div class="lrn-row">
                     <div class="lrn-col-xs-12 lrn-col-sm-12 lrn-col-md-12 lrn-col-lg-10">
                         <div class="lrn-text-large"></div>
-                        <p>
-                            <a class="btn btn-primary btn-md" href="authoring/author/item-list.php" target="_blank">Demo</a>
-                        </p>
+                        <p>Creation of items that consists of Question and Feature is pre-requisite step to create an assessment to users.</p>
+                        <p><i>User:</i> Teacher, Author</p>
+                        <p><i>Action:</i> Please create few items that consists of Questions and Features</p>
+                        <p><a class="btn btn-primary btn-md" href="authoring/author/item-list.php" target="_blank">Demo</a></p>
                     </div>
                 </div>
             </div>
@@ -42,9 +55,10 @@ include_once 'includes/header.php';
                 <div class="lrn-row">
                     <div class="lrn-col-xs-12 lrn-col-sm-12 lrn-col-md-12 lrn-col-lg-10">
                         <div class="lrn-text-large"></div>
-                        <p>
-                          <a class="btn btn-primary btn-md" href="authoring/author/activity-list.php" target="_blank">Demo</a>
-                        </p>
+                        <p>Once items are prepared, activity is required to be created to allow student to participate in assessment</p>
+                        <p><i>User:</i> Teacher, Author</p>
+                        <p><i>Action:</i> Please create an activity based on items created earlier.</p>
+                        <p><a class="btn btn-primary btn-md" href="authoring/author/activity-list.php" target="_blank">Demo</a></p>
                     </div>
                 </div>
             </div>
@@ -55,9 +69,10 @@ include_once 'includes/header.php';
                 <div class="lrn-row">
                     <div class="lrn-col-xs-12 lrn-col-sm-12 lrn-col-md-12 lrn-col-lg-10">
                         <div class="lrn-text-large"></div>
-                        <p>
-                            <a class="btn btn-primary btn-md" href="assessment/items/itemsapi_assess.php" target="_blank">Demo</a>
-                        </p>
+                        <p>With activity that created, this allow students can now participate in assessment and submit is to Teacher/Author.</p>
+                        <p><i>User:</i> Student</p>
+                        <p><i>Action:</i> Please complete assessment that you've generated and submit it for result, activity id can be changed dynamically from the demo page</p>
+                        <p><a class="btn btn-primary btn-md" href="assessment/items/itemsapi_assess.php" target="_blank">Demo</a></p>
                     </div>
                 </div>
             </div>
@@ -68,9 +83,10 @@ include_once 'includes/header.php';
                 <div class="lrn-row">
                     <div class="lrn-col-xs-12 lrn-col-sm-12 lrn-col-md-12 lrn-col-lg-10">
                         <div class="lrn-text-large"></div>
-                        <p>
-                            <a class="btn btn-primary btn-md" href="analytics/reports/report_types.php" target="_blank">Demo</a>
-                        </p>
+                        <p>Once assessment has been completed and submitted, it is scored in the backend, so that report can be generated for Teacher/Author to review Student's progress</p>
+                        <p><i>User:</i> Teacher, Author</p>
+                        <p><i>Action:</i> Please check report and see how you went with your assessment, activity id can be changed dynamically from the demo page</p>
+                        <p><a class="btn btn-primary btn-md" href="analytics/reports/report_types.php" target="_blank">Demo</a></p>
                     </div>
                 </div>
             </div>
