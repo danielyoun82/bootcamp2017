@@ -1,9 +1,21 @@
 <?php
+error_reporting(E_ALL);
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
+
+session_start();
+if (!isset($_SESSION['itemID'])) {
+    $_SESSION['itemID'] = "Bootcamp2017Activity";
+}
+$activity_id_input = $_SESSION['itemID'];
 
 include_once '../../config.php';
 include_once 'includes/header.php';
 
+use LearnositySdk\Request\DataApi;
 use LearnositySdk\Request\Init;
+
+//require_once 'includes/app_paths.php';
 
 $security = array(
     'consumer_key' => $consumer_key,
@@ -46,7 +58,23 @@ $activitySummaryByGroupColumns = [
     ]
 ];
 
-$usersMap = json_decode(file_get_contents(__DIR__ . "/aggregatereports/usersMap.json"), true);
+require_once 'dataapi/data_endpoints.php';
+
+$activities_output = getSessionResponsesByActivityID($activity_id_input);
+//echo json_encode($activities_output);
+$session_id = [];
+foreach ($activities_output['data'] as $data) {
+    array_push($session_id, $data['session_id']);
+}
+//echo json_encode($session_id);
+$user_id = $data['user_id'];
+//echo $user_id;
+$userId = 'demo_student';
+$activity_id = $data['activity_id'];
+//echo $activity_id;
+//$session_id ='aa83b417-c55c-430b-9928-974466b1d659';
+
+//$usersMap = json_decode(file_get_contents(__DIR__ . "/aggregatereports/usersMap.json"), true);
 
 $request = array(
     'configuration' => array(
@@ -56,42 +84,41 @@ $request = array(
         array(
             'id'          => 'report-1',
             'type'        => 'sessions-summary',
-            'user_id'     => 'mce_student',
-            'session_ids' => array(
-                'd7ad7585-a0c1-4c01-9762-44a85f55835c'
-            )
+            'user_id'     => $userId,
+            'session_ids' => $session_id
         ),
         array(
             'id'         => 'report-2',
             'type'       => 'session-detail-by-item',
-            'user_id'    => 'brianmoser',
-            'session_id' => '8151DD9E-9029-4D13-AC773EC9C05E7FF2'
-            // Better to use this session below as it corresponds to the session-detail-by-question report below.
-            // 'user_id'    => 'demo_student',
-            // 'session_id' => 'ac65af88-78e6-4117-920b-f11497542e45'
-
+            'user_id'    => $user_id,
+            'session_id' => $session_id[count($session_id)-1]
         ),
         array(
             'id'         => 'report-2b',
             'type'       => 'session-detail-by-question',
-            'user_id'    => 'demo_student',
-            'session_id' => 'ac65af88-78e6-4117-920b-f11497542e45'
+            'user_id'    => $user_id,
+            'session_id' => $session_id[count($session_id)-1]
         ),
+        /*
         array(
             'id'        => 'report-3',
             'type'      => 'progress-by-tag',
-            'user_id'   => 'mce_student_1',
-            'hierarchy' => 'CCSS'
+            'user_id'   => $user_id,
+            'hierarchy' => 'Demo Type'
         ),
+*/
+/*
         array(
             'id'          => 'report-4',
             'type'        => 'sessions-summary-by-tag',
-            'user_id'     => 'mce_student_3',
-            'hierarchy'   => 'CCSS',
+            'user_id'     => $user_id,
+            'hierarchy'   => 'demo',
             'session_ids' => array(
-                'd5cde952-1111-49ad-bfc7-c1ba102f3b22'
+              $session_id[0],
+              $session_id[1],
             ),
         ),
+*/
         array(
             'id'                 => 'report-5',
             'type'               => 'lastscore-by-activity-by-user',
@@ -100,32 +127,15 @@ $request = array(
             'display_time_spent' => true,
             'users'              => array(
                 array(
-                    'id' => 'mce_student',
-                    'name' => 'Jesse Pinkman'
-                ),
-                array(
-                    'id' => 'mce_student_1',
-                    'name' => 'Walter White'
-                ),
-
-                array(
-                    'id' => 'mce_student_2',
-                    'name' => 'Skylar White'
-                ),
-                 array(
-                    'id' => 'mce_student_3',
-                    'name' => 'Saul Goodman'
-                ),
-                 ),
+                    'id' => $user_id,
+                    'name' => $user_id
+                )
+            ),
 
             'activities' => array(
                 array(
-                    'id' => 'Summer_Test_1',
-                    'name' => 'Summer Test'
-                ),
-                array(
-                    'id' => 'Weekly_Math_Quiz',
-                    'name' => 'Weekly Math Quiz'
+                    'id' => $activity_id,
+                    'name' => $activity_id
                 )
             )
         ),
@@ -133,16 +143,12 @@ $request = array(
             'id'                 => 'report-6',
             'type'               => 'lastscore-by-activity',
             'scoring_type'       => 'partial',
-            'user_id'            => 'mce_student',
+            'user_id'            => $user_id,
             'display_time_spent' => true,
             'activities'         => array(
                 array(
-                    'id' => 'Summer_Test_1',
-                    'name' => 'Summer Test'
-                ),
-                array(
-                    'id' => 'Weekly_Math_Quiz',
-                    'name' => 'Weekly Math Quiz'
+                    'id' => $activity_id,
+                    'name' => $activity_id
                 )
             )
         ),
@@ -154,62 +160,39 @@ $request = array(
             'scoring_type'         => 'partial',
             'users'                => array(
                 array(
-                    'id' => 'mce_student',
-                    'name' => 'Jesse Pinkman'
-                ),
-                array(
-                    'id' => 'mce_student_2',
-                    'name' => 'Skylar White'
-                ),
-                array(
-                    'id' => 'mce_student_1',
-                    'name' => 'Walter White'
-                ),
-                array(
-                    'id' => 'mce_student_3',
-                    'name' => 'Saul Goodman'
+                    'id' => $user_id,
+                    'name' => $user_id
                 )
             ),
-            'activity_id' => 'Weekly_Math_Quiz'
+            'activity_id' => $activity_id
         ),
+
+        /*
         array(
             'id'                 => 'report-8',
             'type'               => 'lastscore-by-tag-by-user',
             'display_time_spent' => true,
             'users'              => array(
                 array(
-                    'id' => 'mce_student',
+                    'id' => $user_id,
                     'name' => 'Jesse Pinkman'
-                ),
-                 array(
-                    'id' => 'mce_student_1',
-                    'name' => 'Walter White'
-                ),
-                   array(
-                    'id' => 'mce_student_2',
-                    'name' => 'Skylar White'
-                ),
-                    array(
-                    'id' => 'mce_student_3',
-                    'name' => 'Saul Goodman'
                 )
             ),
-            'activity_id' => 'Weekly_Math_Quiz',
+            'activity_id' => $session_id[0],
             'hierarchy' => 'DepthofKnowledge'
         ),
+        */
+
         array(
             'id'          => 'report-9',
             'type'        => 'sessions-list',
             'limit'       => 15,
             'ui'          => 'table',
             'activities'  => array(
+                //possible for loop
                 array(
-                    "id" => "Summer_Test_1",
-                    "name" => "Summer Test 1, 2015"
-                    ),
-                array(
-                    "id" => "Weekly_Math_Quiz",
-                    "name" => "Weekly Math Quiz"
+                    "id" => $activity_id,
+                    "name" => $activity_id//$session_id//[count($session_id)-1]
                     )
                 )
         ),
@@ -217,44 +200,19 @@ $request = array(
             'id'          => 'report-10',
             'type'        => 'lastscore-single',
             'ui'          => 'bar',
-            'user_id'     => 'demo_student',
-            'activity_id' => '6c2935ae-eecc-4387-9494-a6d47f067893'
+            'user_id'     => $user_id,
+            'activity_id' => $activity_id
         ),
-        array(
-            'id'          => 'report-11',
-            'type'        => 'lastscore-single',
-            'ui'          => 'bar',
-            'user_id'     => '12345678',
-            'activity_id' => 'BD13_L1_P24_AC2'
-        ),
-        array(
-            'id'          => 'report-12',
-            'type'        => 'lastscore-single',
-            'ui'          => 'bar',
-            'user_id'     => 'brianmoser',
-            'activity_id' => 'edde56e8-ff65-e42e-b4fe49caad796bd'
-        ),
+
         array(
             'id'          => 'report-13',
             'type'        => 'lastscore-single',
             'ui'          => 'pie',
-            'user_id'     => 'demo_student',
-            'activity_id' => '6c2935ae-eecc-4387-9494-a6d47f067893'
+            'user_id'     => $user_id,
+            'activity_id' => $activity_id
         ),
-        array(
-            'id'          => 'report-14',
-            'type'        => 'lastscore-single',
-            'ui'          => 'pie',
-            'user_id'     => '12345678',
-            'activity_id' => 'BD13_L1_P24_AC2'
-        ),
-        array(
-            'id'          => 'report-15',
-            'type'        => 'lastscore-single',
-            'ui'          => 'pie',
-            'user_id'     => 'brianmoser',
-            'activity_id' => 'edde56e8-ff65-e42e-b4fe49caad796bd'
-        ),
+
+        /*
         array( //NEW
             'id'          => 'report-16',
             'type'        => 'progress-single',
@@ -330,27 +288,30 @@ $request = array(
                 )
             )
         ),
+        */
+
         array(
             'id'           => 'report-22',
             'type'         => 'sessions-list-by-item',
             'limit'        => 15,
-            'activity_id'  => 'MCE_5.MD.5b',
+            'activity_id'  => $activity_id,
             'display_user' => true,
             'users'        => array(
                 array(
-                    'id'   => 'mce_student',
-                    'name' => 'Brian Moser'
+                    'id'   => $user_id,
+                    'name' => $user_id
                 )
             )
         ),
+
         array(
             'id'          => 'report-23',
             'type'        => 'sessions-summary-by-question',
-            'user_id'     => 'mce_student',
-            'session_ids' => array(
-                'd7ad7585-a0c1-4c01-9762-44a85f55835c'
-            )
-        ),
+            'user_id'     => $user_id,
+            'session_ids' => $session_id
+        )
+
+        /*
         array(
             'id'          => 'activity-summary-by-group-report',
             'type'        => 'activity-summary-by-group',
@@ -358,6 +319,7 @@ $request = array(
             "group_path" => [],
             "columns" => $activitySummaryByGroupColumns,
         )
+        */
     )
 );
 
@@ -367,6 +329,7 @@ $signedRequest = $Init->generate();
 ?>
 
 <div class="jumbotron section">
+  
     <div class="toolbar">
         <ul class="list-inline">
             <li data-toggle="tooltip" data-original-title="Preview API Initialisation Object"><a href="#"  data-toggle="modal" data-target="#initialisation-preview"><span class="glyphicon glyphicon-search"></span></a></li>
@@ -374,10 +337,22 @@ $signedRequest = $Init->generate();
             <li data-toggle="tooltip" data-original-title="Toggle product overview box"><a href="#"><span class="glyphicon glyphicon-chevron-up jumbotron-toggle"></span></a></li>
         </ul>
     </div>
+
     <div class="overview">
-        <h1>Reports API – Report Types</h1>
-        <p>A cross domain embeddable service that allows content providers to easily render rich reports.<p>
+        <h1>Reports</h1>
     </div>
+    <div id="form">
+        <label>Activity ID :</label>
+        <input id="itemID" type="text" placeholder="Activity ID e.g. Bootcamp2017Activity">
+        <input id="submit" type="button" value="Change">
+        <span id="result">
+            <i>&nbsp;current activity:
+                <?php
+                echo $_SESSION['itemID'];
+                ?>
+            </i>
+        </span>
+  </div>
 </div>
 
 <div class="section">
@@ -419,7 +394,7 @@ $signedRequest = $Init->generate();
                                 </div>
                             </div>
                         </div>
-
+<!--
                         <div class="panel panel-default panel-border-bottom">
                             <div class="panel-heading inner-heading">
                                 <h4 class="panel-title">
@@ -445,7 +420,7 @@ $signedRequest = $Init->generate();
                                 </div>
                             </div>
                         </div>
-
+-->
                         <div class="panel panel-default panel-border-bottom">
                             <div class="panel-heading inner-heading">
                                 <h4 class="panel-title">
@@ -676,13 +651,17 @@ $signedRequest = $Init->generate();
                                         <table class="lrn-single-reports">
                                             <tr>
                                                 <td width="33%"><div class="lrn-single-report"><span class="learnosity-report" id="report-10"></span></div></td>
+                                                <!--
                                                 <td width="33%"><div class="lrn-single-report"><span class="learnosity-report" id="report-11"></span></div></td>
                                                 <td width="33%"><div class="lrn-single-report"><span class="learnosity-report" id="report-12"></span></div></td>
+                                              -->
                                             </tr>
                                             <tr>
                                                 <td width="33%"><div class="lrn-single-report"><span class="learnosity-report" id="report-13"></span></div></td>
+                                                <!--
                                                 <td width="33%"><div class="lrn-single-report"><span class="learnosity-report" id="report-14"></span></div></td>
                                                 <td width="33%"><div class="lrn-single-report"><span class="learnosity-report" id="report-15"></span></div></td>
+                                              -->
                                             </tr>
                                         </table>
                                     </section>
@@ -718,6 +697,7 @@ $signedRequest = $Init->generate();
                             </div>
                         </div>
 
+                        <!--
                         <div class="panel panel-default panel-no-border">
                             <div class="panel-heading inner-heading">
                                 <h4 class="panel-title">
@@ -731,6 +711,7 @@ $signedRequest = $Init->generate();
                                     </a>
                                 </h4>
                             </div>
+
                             <div id="lastscore-tag" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <section>
@@ -743,14 +724,15 @@ $signedRequest = $Init->generate();
                                     <div id="lrn-report-lastscore-tag-events"></div>
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
+                        -->
                     </div>
                 </div>
             </div>
         </div>
 
-
+<!--
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
@@ -833,7 +815,8 @@ $signedRequest = $Init->generate();
                 </div>
             </div>
         </div>
-
+-->
+<!--
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
@@ -883,9 +866,10 @@ $signedRequest = $Init->generate();
                 </div>
             </div>
         </div>
-
+      -->
 
         <!-- Real time reports -->
+        <!--
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
@@ -911,6 +895,7 @@ $signedRequest = $Init->generate();
                                     </a>
                                 </h4>
                             </div>
+
                             <div id="live-progress" class="panel-collapse collapse in">
                                 <div class="panel-body">
                                     <section>
@@ -933,6 +918,7 @@ $signedRequest = $Init->generate();
                     </div>
                 </div>
             </div>
+          -->
         </div>
 
     </div>
@@ -946,9 +932,13 @@ $signedRequest = $Init->generate();
     </div>
 </div>
 
+<script src="getSessionVarReport.js"></script>
 <script src="<?php echo $url_reports; ?>"></script>
-<script src="<?php echo $env['www'] ?>static/vendor/head.min.js"></script>
-<script src="<?php echo $env['www'] ?>static/vendor/reveal/reveal.js"></script>
+
+<!--
+<script src="<?php //echo $env['www'] ?>static/vendor/head.min.js"></script>
+<script src="<?php //echo $env['www'] ?>static/vendor/reveal/reveal.js"></script>
+-->
 <script>
     var initOptions = <?php echo $signedRequest; ?>;
 
@@ -956,7 +946,7 @@ $signedRequest = $Init->generate();
             readyListener: onReportsReady
         }
     );
-
+/*
     var showGroupReportData = function() {
         var reportObj = lrnReports.getReport('activity-summary-by-group-report');
         reportObj.getGroup({path:reportObj.getCurrentGroupPath()}, function(groupData) {
@@ -983,6 +973,7 @@ $signedRequest = $Init->generate();
             });
         });
     };
+*/
 
     // Array of ColumnDefinition objects we can pass to activitySummaryByGroup.setOptions({columns: ...}), eg.
     //   [
@@ -1001,6 +992,7 @@ $signedRequest = $Init->generate();
     //     },
     //     ...
     //   ]
+
     var activitySummaryByGroupColumns = <?php echo json_encode($activitySummaryByGroupColumns, JSON_PRETTY_PRINT); ?>;
 
     // Map of user_id: user_name, eg.
@@ -1010,10 +1002,11 @@ $signedRequest = $Init->generate();
     //      "1896991f-e6a3-4cfb-b5c9-b44ec57f6c0e": "Nelson Muntz",
     //      ...
     //   }
-    var usersMap = <?php echo json_encode($usersMap, JSON_PRETTY_PRINT); ?>;
+    /*
+    var usersMap = <?php //echo json_encode($usersMap, JSON_PRETTY_PRINT); ?>;
     function mapUserId(userId) {
         return usersMap[userId];
-    }
+    }*/
 
     // Change the header of the group_name to reflect the current level in the group hiererchy.
     function updateGroupReportHeaders(reportObj, rawJson) {
@@ -1056,7 +1049,7 @@ $signedRequest = $Init->generate();
     function onReportsReady() {
         var onClickFunction = function(data, target, modal) {
             if (modal) {
-                var sessionReports = ['sessions-summary', 'session-detail-by-question', 'sessions-summary-by-tag'];
+                var sessionReports = ['sessions-summary', 'session-detail-by-question'];
                 var reportType = sessionReports[Math.floor(Math.random() * sessionReports.length)];
 
                 $('#lrn-reports-demos-modal').modal({
@@ -1094,9 +1087,9 @@ $signedRequest = $Init->generate();
             onClickFunction(data, 'lrn-report-lastscore-activity-events', false);
         });
 
-        groupLastScoreByActivity.on('click:user', function(data) {
-            onClickFunction(data, 'lrn-report-lastscore-activity-events', false);
-        });
+        //groupLastScoreByActivity.on('click:user', function(data) {
+        //    onClickFunction(data, 'lrn-report-lastscore-activity-events', false);
+        //});
 
         /* user-lastscore-by-activity onclick events */
         var userLastScoreByActivity = lrnReports.getReport('report-5');
@@ -1124,15 +1117,17 @@ $signedRequest = $Init->generate();
         });
 
         /* group-lastscore-by-tag onclick events */
+        /*
         var groupLastScoreByTag = lrnReports.getReport('report-8');
         groupLastScoreByTag.on('click:score', function (data) {
             onClickFunction(data, 'lrn-report-lastscore-tag-events', true);
         });
-
+        */
+        /*
         groupLastScoreByTag.on('click:user', function (data) {
             onClickFunction(data, 'lrn-report-lastscore-tag-events', false);
         });
-
+        */
         /* sessions-list onclick events */
         var sessionsList = lrnReports.getReport('report-9');
             sessionsList.on('click:session', function (data) {
@@ -1144,6 +1139,7 @@ $signedRequest = $Init->generate();
         lastScoreSingleOne.on('click:score', function (data) {
             onClickFunction(data, 'lrn-report-lastscore-single-events', false);
         });
+        /*
         var lastScoreSingleTwo = lrnReports.getReport('report-11');
         lastScoreSingleTwo.on('click:score', function (data) {
             onClickFunction(data, 'lrn-report-lastscore-single-events', false);
@@ -1152,10 +1148,12 @@ $signedRequest = $Init->generate();
         lastScoreSingleThree.on('click:score', function (data) {
             onClickFunction(data, 'lrn-report-lastscore-single-events', false);
         });
+        */
         var lastScoreSingleFour = lrnReports.getReport('report-13');
         lastScoreSingleFour.on('click:score', function (data) {
             onClickFunction(data, 'lrn-report-lastscore-single-events', false);
         });
+        /*
         var lastScoreSingleFive = lrnReports.getReport('report-14');
         lastScoreSingleFive.on('click:score', function (data) {
             onClickFunction(data, 'lrn-report-lastscore-single-events', false);
@@ -1164,7 +1162,7 @@ $signedRequest = $Init->generate();
         lastScoreSingleSix.on('click:score', function (data) {
             onClickFunction(data, 'lrn-report-lastscore-single-events', false);
         });
-
+        */
         /* sessions-list onclick events */
         var sessionsListByItem = lrnReports.getReport('report-22');
             sessionsListByItem.on('click:user', function (data) {
@@ -1172,12 +1170,13 @@ $signedRequest = $Init->generate();
         });
 
         // Aggregate report events
+        /*
         var activitySummaryByGroup = lrnReports.getReport('activity-summary-by-group-report');
         activitySummaryByGroup.on('change:data', function (eventData) {
             enhanceGroupReportUI(activitySummaryByGroup, eventData.dataset_group);
         });
         enhanceGroupReportUI(activitySummaryByGroup);
-
+        */
         // Sessions detail hidden width fix
         $('a#report-session-detail').click(function (e) {
             e.preventDefault();
@@ -1218,5 +1217,5 @@ $signedRequest = $Init->generate();
 </script>
 
 <?php
-    include_once 'views/modals/initialisation-preview.php';
+    //include_once 'views/modals/initialisation-preview.php';
     include_once 'includes/footer.php';

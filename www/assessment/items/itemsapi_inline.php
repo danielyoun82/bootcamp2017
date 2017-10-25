@@ -13,11 +13,11 @@ $security = array(
 );
 
 session_start();
-if(isset($_SESSION['itemID'])){
-  $itemList = explode(",", $_SESSION['itemID']);
+if (isset($_SESSION['itemID'])) {
+    $itemList = explode(",", $_SESSION['itemID']);
 } else {
-  $_SESSION['itemID'] = "Demo3,Demo4,Demo5,Demo6,Demo7,Demo8,Demo9,Demo10";
-  $itemList = explode(",", $_SESSION['itemID']);
+    $_SESSION['itemID'] = "Demo3,Demo4,Demo5,Demo6,Demo7,Demo8,Demo9,Demo10";
+    $itemList = explode(",", $_SESSION['itemID']);
 }
 $items = $itemList;
 
@@ -50,14 +50,27 @@ $signedRequest = $Init->generate();
 <div class="jumbotron section">
     <div class="toolbar">
         <ul class="list-inline">
-            <li data-toggle="tooltip" data-original-title="Preview API Initialisation Object"><a href="#"  data-toggle="modal" data-target="#initialisation-preview"><span class="glyphicon glyphicon-search"></span></a></li>
-            <li data-toggle="tooltip" data-original-title="Visit the documentation"><a href="http://docs.learnosity.com/itemsapi/" title="Documentation"><span class="glyphicon glyphicon-book"></span></a></li>
-            <li data-toggle="tooltip" data-original-title="Toggle product overview box"><a href="#"><span class="glyphicon glyphicon-chevron-up jumbotron-toggle"></span></a></li>
+            <li data-toggle="tooltip" data-original-title="Preview API Initialisation Object">
+                <a href="#"  data-toggle="modal" data-target="#initialisation-preview">
+                    <span class="glyphicon glyphicon-search"></span>
+                </a>
+            </li>
+            <li data-toggle="tooltip" data-original-title="Visit the documentation">
+                <a href="http://docs.learnosity.com/itemsapi/" title="Documentation">
+                    <span class="glyphicon glyphicon-book"></span>
+                </a>
+            </li>
+            <li data-toggle="tooltip" data-original-title="Toggle product overview box">
+                <a href="#">
+                    <span class="glyphicon glyphicon-chevron-up jumbotron-toggle"></span>
+                </a>
+            </li>
         </ul>
     </div>
     <div class="overview">
         <h1>Items API – Inline</h1>
-        <p>Display items from the Learnosity Item Bank in no time with the Items API.  The Items API builds on the Questions API's power and makes it quicker to integrate.<p>
+        <p>Display items from the Learnosity Item Bank in no time with the Items API.
+            The Items API builds on the Questions API's power and makes it quicker to integrate.<p>
     </div>
 </div>
 
@@ -67,7 +80,12 @@ $signedRequest = $Init->generate();
       <input id="itemID" type="text" placeholder="Demo3,Demo4">
       <input id="submit" type="button" value="Change List">
       <div id="result">
-        <i>current dataset: <?php session_start(); echo $_SESSION['itemID'];?></i>
+        <i>current dataset:
+        <?php
+            session_start();
+            echo $_SESSION['itemID'];
+        ?>
+        </i>
       </div>
     </div>
     <br>

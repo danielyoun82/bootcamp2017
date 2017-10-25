@@ -65,6 +65,7 @@ $signedRequest = $Init->generate();
 ?>
 
 <div class="jumbotron section">
+
     <div class="toolbar">
         <ul class="list-inline">
             <li data-toggle="tooltip" data-original-title="Customise API Settings"><a href="#" class="text-muted" data-toggle="modal" data-target="#settings"><span class="glyphicon glyphicon-list-alt"></span></a></li>
@@ -73,8 +74,9 @@ $signedRequest = $Init->generate();
             <li data-toggle="tooltip" data-original-title="Toggle product overview box"><a href="#"><span class="glyphicon glyphicon-chevron-up jumbotron-toggle"></span></a></li>
         </ul>
     </div>
+
     <div class="overview">
-        <h1>Author API – Activity List</h1>
+        <h1>Author – Activity List</h1>
     </div>
 </div>
 

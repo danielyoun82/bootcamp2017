@@ -1,5 +1,6 @@
 <?php
     $pages = array(
+
         'Authoring' => array(
             'authoring/author/index.php'         => 'Author API',
             'authoring/questioneditor/v3/index.php' => 'Question Editor API V3',
@@ -23,6 +24,7 @@
             'casestudies/customquestions/index.php' => 'Custom Questions',
             'casestudies/spanish/index.php' => 'Spanish Demo'
         )
+
     );
 ?>
 
@@ -35,7 +37,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?php echo $env['www'] ?>"><span class="logo">Learnosity Demos</span></a>
+            <a class="navbar-brand" href="<?php echo $env['www'] ?>"><span class="logo">Learnosity Bootcamp 2017</span></a>
         </div>
         <div class="navbar-collapse collapse" id="nav-main">
             <ul class="nav navbar-nav">
@@ -55,15 +57,17 @@
                     }
                 ?>
             </ul>
+            <!--
             <div class="nav-sec-wrapper">
                 <ul class="nav navbar-nav nav-sec">
                     <li>
-                        <a href="https://github.com/Learnosity/learnosity-demos/blob/master/www<?php echo $_SERVER['REQUEST_URI']?>" class="text-muted">
+                        <a href="https://github.com/Learnosity/learnosity-demos/blob/master/www<?php //echo $_SERVER['REQUEST_URI']?>" class="text-muted">
                             <span class="glyphicon glyphicon-file"></span> <span class="nav-source-text">View source</span>
                         </a>
                     </li>
                 </ul>
             </div>
+          -->
         </div>
     </div>
 </div>
