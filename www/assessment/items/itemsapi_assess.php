@@ -25,6 +25,11 @@ if (count($activities_output['data']) <= 0) {
     echo "<font color='red'>Unable to find activity specified</font><br><br>";
 } else {
     $items = $activities_output['data'][0]['data']['items'];
+    $title = $activities_output['data'][0]['data']['config']['title'];
+    if (empty($title)) {
+        $title = $activity_id.' - Assessment';
+    }
+    $subtitle = $activities_output['data'][0]['data']['config']['subtitle']; //ignore if empty
 }
 
 $sessionid = Uuid::generate();
@@ -38,7 +43,8 @@ $request = [
     'user_id' => $studentid,
     'items' => $items,
     'config' => [
-        'title' => $activity_id.' - Assessment',
+        'title' => $title,
+        'subtitle' => $subtitle,
         'regions' => [
             'top-left' => [
                 [
