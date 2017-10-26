@@ -2,7 +2,7 @@
 // session is started by header.php
 session_start();
 if (!isset($_SESSION['itemID'])) {
-    $_SESSION['itemID'] = "Bootcamp2017Activity";
+    $_SESSION['itemID'] = "Bootcamp_Oct_2017_Activity";
 }
 $activity_id = $_SESSION['itemID'];
 

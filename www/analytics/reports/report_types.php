@@ -5,7 +5,7 @@ ini_set('display_errors', 1);
 
 session_start();
 if (!isset($_SESSION['itemID'])) {
-    $_SESSION['itemID'] = "Bootcamp2017Activity";
+    $_SESSION['itemID'] = "Bootcamp_Oct_2017_Activity";
 }
 $activity_id_input = $_SESSION['itemID'];
 
@@ -91,13 +91,13 @@ $request = array(
             'id'         => 'report-2',
             'type'       => 'session-detail-by-item',
             'user_id'    => $user_id,
-            'session_id' => $session_id[count($session_id)-1]
+            'session_id' => $session_id[0]
         ),
         array(
             'id'         => 'report-2b',
             'type'       => 'session-detail-by-question',
             'user_id'    => $user_id,
-            'session_id' => $session_id[count($session_id)-1]
+            'session_id' => $session_id[0]
         ),
         /*
         array(
@@ -329,7 +329,7 @@ $signedRequest = $Init->generate();
 ?>
 
 <div class="jumbotron section">
-  
+
     <div class="toolbar">
         <ul class="list-inline">
             <li data-toggle="tooltip" data-original-title="Preview API Initialisation Object"><a href="#"  data-toggle="modal" data-target="#initialisation-preview"><span class="glyphicon glyphicon-search"></span></a></li>
